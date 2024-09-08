@@ -30,7 +30,7 @@ NOTICE: The docker image doesn't include any of the pwnable.kr challenges, you'l
 ### Build the image and run the container
 
 ```bash
-> docker-compose up -d
+> docker compose up -d
 ```
 
 ### Connect to the container
