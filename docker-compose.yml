@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  pwnable-kr-docker:
+    build: .
+    entrypoint: /bin/zsh
+    restart: "no"
+    stdin_open: true            # docker run -i
+    tty: true                   # docker run -t
+    hostname: ubuntu
+    container_name: pwnable-kr-docker
+    network_mode: "host"
+    ports:
+      - "2159"
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined      # This will turn off seccomp confinement for 
+                                # the container, which is kinda bad for
+                                # sandboxing. May need to rethink this in
+                                # the future.
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - /home/$USER/Source:/home/ubuntu/Source

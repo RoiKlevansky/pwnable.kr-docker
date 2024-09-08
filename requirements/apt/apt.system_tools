@@ -1,0 +1,17 @@
+apt-file
+binutils=2.26.1-1ubuntu1~16.04.8
+ca-certificates
+cpu-checker
+cpuid
+debconf
+debianutils
+distro-info
+locales
+makedev
+net-tools
+nghttp2
+procps
+psmisc
+software-properties-common
+sudo
+util-linux
