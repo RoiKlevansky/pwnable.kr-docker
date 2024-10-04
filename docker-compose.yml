@@ -9,6 +9,8 @@ services:
     hostname: ubuntu
     container_name: pwnable-kr-docker
     network_mode: "host"
+    extra_hosts:
+      - "ubuntu:127.0.0.1"
     ports:
       - "2159"
     cap_add:
