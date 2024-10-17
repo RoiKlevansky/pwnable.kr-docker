@@ -83,6 +83,13 @@ RUN locale-gen en_US.UTF-8
 # Disable AT_BRIDGE
 RUN echo "NO_AT_BRIDGE=1" >> /etc/environment
 
+# Create folder for SSH server
+RUN mkdir /var/run/sshd
+RUN chmod 0755 /var/run/sshd
+
+# Make sudo work with no password for the specified user
+RUN echo "${user} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/${user} && chmod 0440 /etc/sudoers.d/${user}
+
 # Create a non root user for convenience
 RUN groupadd -g ${gid} ${group} && useradd -rm -s /bin/zsh -g ${gid} -G sudo -u ${uid} ${user} && echo "${user}:${passwd}" | chpasswd
 USER ${user}
@@ -107,5 +114,6 @@ RUN mkdir /home/${user}/Source
 # Change PS1 in zsh
 RUN echo 'export PS1="(docker) $PS1"' >> ~/.zshrc
 
-# Set the default shell to zsh
-ENTRYPOINT [ "/usr/bin/zsh" ]
+# Start ssh server
+EXPOSE 22
+ENTRYPOINT ["sudo", "/usr/sbin/sshd", "-D"]
