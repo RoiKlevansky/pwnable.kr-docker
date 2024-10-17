@@ -35,11 +35,25 @@ NOTICE: The docker image doesn't include any of the pwnable.kr challenges, you'l
 
 ### Connect to the container
 
+Default credentials are: ```ubuntu:1```.
+
+#### Using SSH
+
+The recommended way to connect to the container is using SSH. This will also allow you to use X11 forwarding:
+
+```bash
+> ssh -X ubuntu@172.16.128.2
+```
+
+The container is fixed to use this address.
+
+#### Using docker exec
+
+NOTE: You will NOT be able to open X11 applications this way.
+
 ```bash
 > docker exec -it pwnable-kr-docker [zsh|bash]
 ```
-
-Default crednitals are: ```ubuntu:1```.
 
 ## gdbserver
 
